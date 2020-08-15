@@ -66,10 +66,24 @@ void inputLoop(){
         key = getch();
         switch (key) {
             case 'q':
+                saveSeq = false;
                 if (!Buffer::isModified())
                     return;
                 if (quitSeq) return;
                 else quitSeq = true;
+                break;
+
+            case 's':
+                quitSeq = false;
+                if (saveSeq)
+                    Buffer::save(SaveOption::SAME_FILE);
+                else saveSeq = true;
+                break;
+
+            case 'n':
+                if (saveSeq)
+                    Buffer::save(SaveOption::NEW_FILE);
+                quitSeq = saveSeq = false;
                 break;
 
             case KEY_UP: case 'k':

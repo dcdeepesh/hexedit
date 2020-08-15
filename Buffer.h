@@ -4,9 +4,14 @@
 #include <cstddef>
 #include <string>
 
+enum class SaveOption {
+    SAME_FILE, NEW_FILE
+};
+
 namespace Buffer {
     void load(std::string filePath);
-
+    void save(SaveOption option);
+    
     const char* contents();
     std::size_t size();
     char at(int pos);

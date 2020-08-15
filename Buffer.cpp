@@ -10,9 +10,11 @@ namespace Buffer {
     std::ifstream ifs;
     size_t fileSize;
     char *buffer;
+    std::string filePath;
     bool modified = false;
 
     void load(std::string filePath) {
+        Buffer::filePath = filePath;
         ifs.open(filePath, ios::in | ios::binary);
 
         ifs.seekg(0, ios::end);
@@ -22,6 +24,18 @@ namespace Buffer {
         ifs.seekg(0, ios::beg);
         ifs.read(buffer, fileSize);
         ifs.close();
+    }
+
+    void save(SaveOption option) {
+        std::string outFilePath;
+        if (option == SaveOption::SAME_FILE)
+            outFilePath = filePath;
+        else
+            outFilePath = "mod_" + filePath + "";
+
+        std::ofstream ofs(outFilePath, ios::out | ios::binary);
+        ofs.write(buffer, fileSize);
+        ofs.close();
     }
 
     const char* contents() { return buffer; }
