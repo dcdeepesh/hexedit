@@ -28,8 +28,13 @@ void editLoop() {
     while (true) {
         key = getch();
         switch (key) {
-            case '\n':
-                //save buffer
+            case '\n': {
+                int n = curLeft ? 2 : 1;
+                char newHexByte[3];
+                innstr(newHexByte, n);
+                Buffer::set(Marker::pos, Base::toText(newHexByte));
+                Table::show();
+            }
             case 'q':
                 curs_set(0);
                 Marker::show();
