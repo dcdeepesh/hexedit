@@ -5,15 +5,16 @@
 
 using std::size_t;
 using std::ios;
+using std::string;
 
 namespace Buffer {
     std::ifstream ifs;
     size_t fileSize;
     char *buffer;
-    std::string filePath;
+    string filePath;
     bool modified = false;
 
-    void load(std::string filePath) {
+    void load(string filePath) {
         Buffer::filePath = filePath;
         ifs.open(filePath, ios::in | ios::binary);
 
@@ -36,6 +37,7 @@ namespace Buffer {
         std::ofstream ofs(outFilePath, ios::out | ios::binary);
         ofs.write(buffer, fileSize);
         ofs.close();
+        modified = false;
     }
 
     const char* contents() { return buffer; }

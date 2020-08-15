@@ -1,4 +1,3 @@
-#include <curses.h>
 #include "Buffer.h"
 #include "Global.h"
 #include "Marker.h"
@@ -7,10 +6,7 @@
 #include "Util.h"
 #include "Table.h"
 
-#include <iostream>
-
-using std::cout;
-using std::endl;
+#include <curses.h>
 
 namespace G {
     int height, width;

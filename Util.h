@@ -16,18 +16,6 @@ inline void moveLeft(int n = 1) {
     move(getcury(stdscr), getcurx(stdscr) - n);
 }
 
-inline void moveUp(int n = 1) {
-    move(getcury(stdscr) - n, getcurx(stdscr));
-}
-
-inline void moveDown(int n = 1) {
-    move(getcury(stdscr) + n, getcurx(stdscr));
-}
-
-inline void home() {
-    move(getcury(stdscr), 0);
-}
-
 inline void newline(int howMany = 1) {
     for (int i = 0; i < howMany; i++)
         addch('\n');

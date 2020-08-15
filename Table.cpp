@@ -9,13 +9,13 @@
 #include <sstream>
 
 namespace Table {
-    int minIndexInView = 0;
-    int maxIndexInView = 0;
+    int startIndex = 0;
+    int endIndex = 0;
 
     void show(int fromPos/*=0*/) {
         if (fromPos > Buffer::size())
             fromPos = Buffer::size();
-        minIndexInView = fromPos;
+        startIndex = fromPos;
         move(0, 0);
     
         // draw the top (index) line
@@ -52,7 +52,7 @@ namespace Table {
                 ss << Base::toText(byte);
     
                 if (index < Buffer::size() - 1) {
-                    maxIndexInView = index;
+                    endIndex = index;
                     index++;
                 }
                 else index = -1;
@@ -67,12 +67,12 @@ namespace Table {
     }
 
     void resize() {
-        show(minIndexInView);
+        show(startIndex);
     }
 
     void pos2coords(int pos, int &x, int &y) {
         x = 0; y = 0;
-        int scrOffset = pos - minIndexInView;
+        int scrOffset = pos - startIndex;
 
         y = scrOffset / G::cols;
         y += 2;     // top 2 lines
@@ -85,7 +85,7 @@ namespace Table {
 
     void pos2coordsText(int pos, int &x, int &y) {
         x = 0; y = 0;
-        int scrOffset = pos - minIndexInView;
+        int scrOffset = pos - startIndex;
 
         y = scrOffset / G::cols;
         y += 2;     // top 2 lines
@@ -98,9 +98,9 @@ namespace Table {
     }
 
     void scrollIntoView(int pos) {
-        if (pos >= minIndexInView && pos <= maxIndexInView)
+        if (pos >= startIndex && pos <= endIndex)
             return;
-        else if (pos < minIndexInView)
+        else if (pos < startIndex)
             show(pos - pos % G::cols);
         else {
             // we know that the last line should contain pos,
