@@ -10,6 +10,7 @@ namespace Buffer {
     std::ifstream ifs;
     size_t fileSize;
     char *buffer;
+    bool modified = false;
 
     void load(std::string filePath) {
         ifs.open(filePath, ios::in | ios::binary);
@@ -36,9 +37,13 @@ namespace Buffer {
     void set(int pos, char newByte) {
         if (pos < 0 || pos > fileSize)
             throw std::range_error("Buffer::set()");
-        else
+        else {
             buffer[pos] = newByte;
+            modified = true;
+        }
     }
+
+    bool isModified() { return modified; }
 
     void finish() {
         delete[] buffer;

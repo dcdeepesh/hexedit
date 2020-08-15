@@ -60,33 +60,40 @@ void editLoop() {
 
 void inputLoop(){
     int key;
+    bool saveSeq = false, quitSeq = false;
+
     while (true) {
         key = getch();
         switch (key) {
-            case 'q': return;
+            case 'q':
+                if (!Buffer::isModified())
+                    return;
+                if (quitSeq) return;
+                else quitSeq = true;
+                break;
 
-            case KEY_UP:
-            case 'k':
+            case KEY_UP: case 'k':
+                quitSeq = saveSeq = false;
                 Marker::moveUp();
                 break;
 
-            case KEY_DOWN:
-            case 'j':
+            case KEY_DOWN: case 'j':
+                quitSeq = saveSeq = false;
                 Marker::moveDown();
                 break;
 
-            case KEY_LEFT:
-            case 'h':
+            case KEY_LEFT: case 'h':
+                quitSeq = saveSeq = false;
                 Marker::moveLeft();
                 break;
                 
-            case KEY_RIGHT:
-            case 'l':
+            case KEY_RIGHT: case 'l':
+                quitSeq = saveSeq = false;
                 Marker::moveRight();
                 break;
 
-            case '\n':  // enter key
-            case 'i':
+            case '\n': case 'i':
+                quitSeq = saveSeq = false;
                 editLoop();
                 curs_set(0);
                 break;
