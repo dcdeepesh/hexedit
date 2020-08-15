@@ -1,0 +1,47 @@
+#include <string>
+#include <stdexcept>
+#include <sstream>
+#include <algorithm>
+
+using std::string;
+
+namespace Base {
+    string pad(const string &str, int lenAfterPad) { 
+        if (str.length() >= lenAfterPad)
+            return str;
+        else
+            return string(lenAfterPad - str.length(), '0') + str;
+    }
+
+    char hexOf(int value) {
+        static char digits[] =
+            {'0', '1', '2', '3', '4', '5', '6', '7',
+             '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+        
+        if (value > 15)
+            throw new std::range_error("hex char not [0-15]");
+
+        return digits[value];
+    }
+
+    string toHex(int value, int lenAfterPad = 2) {
+        if (value == 0)
+            return pad("0", lenAfterPad);
+        if (value < 0)
+            value = static_cast<unsigned char>((char) value);
+
+        std::stringstream ss;
+        while (value > 0) {
+            ss << hexOf(value % 16);
+            value /= 16;
+        }
+
+        string str = ss.str();
+        std::reverse(str.begin(), str.end());
+        return pad(str, lenAfterPad);
+    }
+
+    char toText(char byte) {
+        return (byte >= 32 && byte <= 127 && byte != 32) ? byte : '.';
+    }
+}
