@@ -6,6 +6,10 @@
 using std::string;
 
 namespace Base {
+    const char digits[] =
+        {'0', '1', '2', '3', '4', '5', '6', '7',
+         '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
     string pad(const string &str, int lenAfterPad) { 
         if (str.length() >= lenAfterPad)
             return str;
@@ -14,14 +18,18 @@ namespace Base {
     }
 
     char hexOf(int value) {
-        static char digits[] =
-            {'0', '1', '2', '3', '4', '5', '6', '7',
-             '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-        
         if (value > 15)
             throw new std::range_error("hex char not [0-15]");
 
         return digits[value];
+    }
+
+    char charOf(char hexChar) {
+        for (int i = 0; i < 16; i++)
+            if (digits[i] == hexChar)
+                return i;
+
+        throw std::range_error("Base::charOf()");
     }
 
     string toHex(int value, int lenAfterPad = 2) {
@@ -43,5 +51,9 @@ namespace Base {
 
     char toText(char byte) {
         return (byte >= 32 && byte <= 127 && byte != 32) ? byte : '.';
+    }
+
+    char toText(char *hex) {
+        return 16 * charOf(hex[0]) + charOf(hex[1]);
     }
 }

@@ -9,6 +9,7 @@ namespace Base {
 
     std::string toHex(int value, int lenAfterPad = 2);
     char toText(char byte);
+    char toText(char *hex);
 }
 
 #endif
