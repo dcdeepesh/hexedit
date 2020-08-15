@@ -10,6 +10,7 @@ namespace Buffer {
     const char* contents();
     std::size_t size();
     char at(int pos);
+    void set(int pos, char newByte);
 
     void finish();
 }

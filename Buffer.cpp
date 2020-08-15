@@ -28,9 +28,16 @@ namespace Buffer {
 
     char at(int pos) {
         if (pos < 0 || pos > fileSize)
-            throw std::range_error("Buffer.at()");
+            throw std::range_error("Buffer::at()");
         else
             return buffer[pos];
+    }
+
+    void set(int pos, char newByte) {
+        if (pos < 0 || pos > fileSize)
+            throw std::range_error("Buffer::set()");
+        else
+            buffer[pos] = newByte;
     }
 
     void finish() {
