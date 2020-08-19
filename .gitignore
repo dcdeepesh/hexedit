@@ -1,3 +1,5 @@
 .vscode/
 main
 mod_*
+test_*
+*_test.cpp
