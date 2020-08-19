@@ -19,19 +19,18 @@ void editLoop() {
     move(y, x);
     curs_set(2);
     bool curLeft = true;
+    
+    char newHexByte[3];
+    innstr(newHexByte, 2);
 
     int key;
     while (true) {
         key = getch();
         switch (key) {
-            case '\n': {
-                int n = curLeft ? 2 : 1;
-                char newHexByte[3];
-                innstr(newHexByte, n);
+            case '\n':
                 Buffer::set(Marker::pos, Base::toText(newHexByte));
-                Table::show();
-            }
             case 'q':
+                Table::resize();
                 curs_set(0);
                 Marker::show();
                 return;
@@ -47,6 +46,7 @@ void editLoop() {
             case '8': case '9': case 'a': case 'b':
             case 'c': case 'd': case 'e': case 'f':
                 addch(key);
+                newHexByte[curLeft ? 0 : 1] = key;
                 if (!curLeft) moveLeft(2);
                 curLeft = !curLeft;
                 break;
@@ -105,7 +105,6 @@ void inputLoop(){
             case '\n': case 'i':
                 quitSeq = saveSeq = false;
                 editLoop();
-                curs_set(0);
                 break;
         }
     }
