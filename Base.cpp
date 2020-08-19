@@ -11,15 +11,15 @@ namespace Base {
          '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     string pad(const string &str, int lenAfterPad) { 
-        if (str.length() >= lenAfterPad)
+        if (lenAfterPad < 0 || str.length() >= lenAfterPad)
             return str;
         else
             return string(lenAfterPad - str.length(), '0') + str;
     }
 
     char hexOf(int value) {
-        if (value > 15)
-            throw new std::range_error("hex char not [0-15]");
+        if (value < 0 || value > 15)
+            throw std::range_error("hex char not [0-15]");
 
         return digits[value];
     }
