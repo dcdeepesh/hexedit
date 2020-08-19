@@ -7,6 +7,8 @@
 #include "Table.h"
 
 #include <curses.h>
+#include <iostream>
+#include <string>
 
 namespace G {
     int height, width;
@@ -110,7 +112,22 @@ void inputLoop(){
     }
 }
 
-int main() {
+void printUsage() {
+    std::cout <<
+        "No file provided.\n"
+        "Usage: ./hexedit <fileName>\n"
+        "Use option '-h' or --help' to get complete help."
+    << std::endl;
+}
+
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        printUsage();
+        return 0;
+    }
+
+    std::string fileName = argv[1];
+    
     initscr();
     G::height = LINES;
     G::width = COLS;
@@ -120,7 +137,7 @@ int main() {
     Colors::init();
     keypad(stdscr, TRUE);
 
-    Buffer::load("Table.cpp");
+    Buffer::load(fileName);
     Table::show();
     Marker::show();
     inputLoop();
