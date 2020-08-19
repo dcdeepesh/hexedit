@@ -61,7 +61,8 @@ namespace Table {
     
             // string data (on the right)
             addch(' ');
-            printw(ss.str());
+            for (char c : ss.str())
+                addch(c);
         }
     
         refresh();
