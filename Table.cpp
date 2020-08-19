@@ -30,7 +30,7 @@ namespace Table {
         newline();
     
         // draw the rest of the lines
-        size_t index = fromPos;
+        int index = fromPos;
         size_t numLines = (Buffer::size() - fromPos) / G::cols + 1;
         for (size_t line = 0; line < numLines && line < G::height-2; line++) {
             newline();
@@ -51,10 +51,11 @@ namespace Table {
                 printw(Base::toHex(byte) + " ");
                 ss << Base::toText(byte);
     
-                if (index < Buffer::size() - 1) {
+                if (index >= 0)
                     endIndex = index;
+
+                if (index < Buffer::size() - 1 && index >= 0)
                     index++;
-                }
                 else index = -1;
             }
     
