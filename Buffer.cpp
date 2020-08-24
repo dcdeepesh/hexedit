@@ -14,9 +14,9 @@ namespace Buffer {
     string filePath;
     bool modified = false;
 
-    void load(string filePath) {
-        Buffer::filePath = filePath;
-        ifs.open(filePath, ios::in | ios::binary);
+    void load(string file) {
+        filePath = file;
+        ifs.open(file, ios::in | ios::binary);
 
         ifs.seekg(0, ios::end);
         fileSize = ifs.tellg();

@@ -1,5 +1,5 @@
 OBJECTS = Base.o Buffer.o Color.o hexedit.o Marker.o Table.o
-CXXFLAGS = -Wall -Wextra -Wshadow -pedantic -lcurses
+CXXFLAGS = -Wall -Wextra -pedantic -lcurses
 CXX = g++
 
 hexedit: $(OBJECTS)
