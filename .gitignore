@@ -1,5 +1,6 @@
 .vscode/
-main
+hexedit
 mod_*
 test_*
 *_test.cpp
+*.o
