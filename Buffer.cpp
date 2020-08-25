@@ -8,15 +8,14 @@ using std::ios;
 using std::string;
 
 namespace Buffer {
-    std::ifstream ifs;
-    size_t fileSize;
     char *buffer;
     string filePath;
+    size_t fileSize;
     bool modified = false;
 
     void load(string file) {
         filePath = file;
-        ifs.open(file, ios::in | ios::binary);
+        std::ifstream ifs(file, ios::in | ios::binary);
 
         ifs.seekg(0, ios::end);
         fileSize = ifs.tellg();
@@ -40,7 +39,6 @@ namespace Buffer {
         modified = false;
     }
 
-    const char* contents() { return buffer; }
     size_t size() { return fileSize; }
 
     char at(size_t pos) {

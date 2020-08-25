@@ -16,8 +16,8 @@ namespace Table {
     size_t endIndex = 0;
 
     void show(size_t fromPos/*=0*/) {
-        if (fromPos > Buffer::size())
-            fromPos = Buffer::size();
+        if (fromPos >= Buffer::size())
+            fromPos = Buffer::size() - 1;
         startIndex = fromPos;
         move(0, 0);
     

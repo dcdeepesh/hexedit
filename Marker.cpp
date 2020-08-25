@@ -25,6 +25,8 @@ namespace Marker {
         show();
     }
 
+    size_t getPos() { return pos; }
+
     void moveUp()       { setPos(pos - G::cols); }
     void moveDown()     { setPos(pos + G::cols); }
     void moveLeft()     { setPos(pos - 1); }

@@ -4,8 +4,6 @@
 #include <cstddef>
 
 namespace Marker {
-    extern std::size_t pos;
-    
     void moveUp();
     void moveDown();
     void moveLeft();
@@ -14,6 +12,7 @@ namespace Marker {
 
     void show();
     void hide();
+    std::size_t getPos();
 }
 
 #endif

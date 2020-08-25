@@ -17,7 +17,7 @@ namespace G {
 void editLoop() {
     Marker::hide();
     int x, y;
-    Table::pos2coords(Marker::pos, x, y);
+    Table::pos2coords(Marker::getPos(), x, y);
     move(y, x);
     curs_set(2);
     bool curLeft = true;
@@ -30,7 +30,7 @@ void editLoop() {
         key = getch();
         switch (key) {
             case '\n':
-                Buffer::set(Marker::pos, Base::toText(newHexByte));
+                Buffer::set(Marker::getPos(), Base::toText(newHexByte));
             case 'q':
                 Table::resize();
                 curs_set(0);
