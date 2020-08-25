@@ -35,7 +35,7 @@ namespace Table {
         // draw the rest of the lines
         int index = fromPos;
         int numLines = (Buffer::size() - fromPos) / G::cols + 1;
-        for (int line = 0; line < numLines && line < G::height-2; line++) {
+        for (int line = 0; line < numLines && line < G::height-3; line++) {
             newline();
     
             // left index/offset
@@ -110,7 +110,7 @@ namespace Table {
         else {
             // we know that the last line should contain pos,
             // so now we calculate the new minIndexInView
-            int maxLinesInView = G::height - 2;
+            int maxLinesInView = G::height - 3;
             int lineBeg = pos - pos % G::cols;
             int newMinIndex = lineBeg - (maxLinesInView - 1) * G::cols;
             show(newMinIndex);
