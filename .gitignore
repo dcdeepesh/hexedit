@@ -4,3 +4,5 @@ mod_*
 test_*
 *_test.cpp
 *.o
+TODO*
+main
