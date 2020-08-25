@@ -1,8 +1,10 @@
 #ifndef DEC_HEX_MARKER_H
 #define DEC_HEX_MARKER_H
 
+#include <cstddef>
+
 namespace Marker {
-    extern int pos;
+    extern std::size_t pos;
     
     void moveUp();
     void moveDown();

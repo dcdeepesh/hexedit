@@ -10,8 +10,8 @@ namespace Base {
         {'0', '1', '2', '3', '4', '5', '6', '7',
          '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    string pad(const string &str, int lenAfterPad) { 
-        if (lenAfterPad < 0 || str.length() >= lenAfterPad)
+    string pad(const string &str, unsigned int lenAfterPad) { 
+        if (str.length() >= lenAfterPad)
             return str;
         else
             return string(lenAfterPad - str.length(), '0') + str;
@@ -32,7 +32,7 @@ namespace Base {
         throw std::range_error("Base::charOf()");
     }
 
-    string toHex(int value, int lenAfterPad = 2) {
+    string toHex(int value, unsigned int lenAfterPad = 2) {
         if (value == 0)
             return pad("0", lenAfterPad);
         if (value < 0)

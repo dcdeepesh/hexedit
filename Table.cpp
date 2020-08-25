@@ -7,12 +7,15 @@
 
 #include <curses.h>
 #include <sstream>
+#include <cstddef>
+
+using std::size_t;
 
 namespace Table {
-    int startIndex = 0;
-    int endIndex = 0;
+    size_t startIndex = 0;
+    size_t endIndex = 0;
 
-    void show(int fromPos/*=0*/) {
+    void show(size_t fromPos/*=0*/) {
         if (fromPos > Buffer::size())
             fromPos = Buffer::size();
         startIndex = fromPos;
@@ -31,8 +34,8 @@ namespace Table {
     
         // draw the rest of the lines
         int index = fromPos;
-        size_t numLines = (Buffer::size() - fromPos) / G::cols + 1;
-        for (size_t line = 0; line < numLines && line < G::height-2; line++) {
+        int numLines = (Buffer::size() - fromPos) / G::cols + 1;
+        for (int line = 0; line < numLines && line < G::height-2; line++) {
             newline();
     
             // left index/offset
@@ -72,7 +75,7 @@ namespace Table {
         show(startIndex);
     }
 
-    void pos2coords(int pos, int &x, int &y) {
+    void pos2coords(size_t pos, int &x, int &y) {
         x = 0; y = 0;
         int scrOffset = pos - startIndex;
 
@@ -85,7 +88,7 @@ namespace Table {
         x += xOffset / 4;   // extra spaces every 4 bytes
     }
 
-    void pos2coordsText(int pos, int &x, int &y) {
+    void pos2coordsText(size_t pos, int &x, int &y) {
         x = 0; y = 0;
         int scrOffset = pos - startIndex;
 
@@ -99,7 +102,7 @@ namespace Table {
         x += xOffset;       // inside the table
     }
 
-    void scrollIntoView(int pos) {
+    void scrollIntoView(size_t pos) {
         if (pos >= startIndex && pos <= endIndex)
             return;
         else if (pos < startIndex)

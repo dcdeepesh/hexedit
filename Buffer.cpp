@@ -43,15 +43,15 @@ namespace Buffer {
     const char* contents() { return buffer; }
     size_t size() { return fileSize; }
 
-    char at(int pos) {
-        if (pos < 0 || pos > fileSize)
+    char at(size_t pos) {
+        if (pos > fileSize)
             throw std::range_error("Buffer::at()");
         else
             return buffer[pos];
     }
 
-    void set(int pos, char newByte) {
-        if (pos < 0 || pos > fileSize)
+    void set(size_t pos, char newByte) {
+        if (pos > fileSize)
             throw std::range_error("Buffer::set()");
         else {
             buffer[pos] = newByte;

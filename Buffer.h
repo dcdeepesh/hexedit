@@ -14,8 +14,8 @@ namespace Buffer {
     
     const char* contents();
     std::size_t size();
-    char at(int pos);
-    void set(int pos, char newByte);
+    char at(std::size_t pos);
+    void set(std::size_t pos, char newByte);
     bool isModified();
 
     void finish();

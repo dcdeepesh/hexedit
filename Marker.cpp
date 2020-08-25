@@ -8,12 +8,15 @@
 
 #include <curses.h>
 #include <string>
+#include <cstddef>
+
+using std::size_t;
 
 namespace Marker {
-    int pos = 0;
+    size_t pos = 0;
 
-    void setPos(int pos) {
-        if (pos < 0 || pos >= Buffer::size())
+    void setPos(size_t pos) {
+        if (pos >= Buffer::size())
             return;
 
         hide();
