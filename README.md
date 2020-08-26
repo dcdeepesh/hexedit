@@ -14,6 +14,7 @@ Hexedit is a TUI-based hex editor.
   - [Modes](#modes)
     - Normal mode
     - Edit mode
+  - [Examples](#examples)
 - [Contributing](#contributing)
 - [TODO](#todo)
 - [Additional Notes](#additional-notes)
@@ -108,6 +109,32 @@ Following are the inputs for edit mode:
   - `Enter` - Save changes, if any, and quit edit mode
   - `q` - Ignore any changes and quit edit mode
   
+### Examples
+**Running without any arguments:**
+```sh
+# in hexedit
+cd bin
+./hexedit
+```
+Output:
+```
+No file provided.
+Usage: ./hexedit <fileName>
+Use option '-h' or --help' to get complete help.
+```
+(`-h` and `--help` are not supported right now. In fact, using them will most probably give you an error)
+
+**Running with a valid readable file:**
+```sh
+# in hexedit
+cd bin
+./hexedit hexedit
+```
+Output:
+```
+(output similar to the image above)
+```
+
 ## Contributing
 Contributions are welcome in the form of pull requests.
 Contributors are requested to be specific about the problem their edits solve, 
