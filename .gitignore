@@ -1,8 +1,10 @@
 .vscode/
-hexedit
+
+# build related stuff
+build/*
+bin
+
+# other unused stuff
 mod_*
-test_*
-*_test.cpp
-*.o
+Unused*
 TODO*
-main
