@@ -103,7 +103,7 @@ A key pressed in normal mode either starts an input sequence, enters a mode, or 
 **Note:** To enter a mode or start an input sequence, you need to be in the Normal mode, otherwise any further keystrokes are
 considered part of the mode/sequence you are in. When you are in a sequence, pressing a key that is not a part of that sequence, brings the
 editor to Normal mode.
-- **Edit mode** (`e`) - When `e` is pressed in Normal mode, the editor goes into edit mode for the currently highlihted byte.
+- **Edit mode** (`i`) - When `i` is pressed in Normal mode, the editor goes into edit mode for the currently highlihted byte.
 Following are the inputs for edit mode:
   - `Arrow Left`/`Arrow Right` - Move left/right in the current byte (cell).
   - `Enter` - Save changes, if any, and quit edit mode
