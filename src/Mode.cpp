@@ -1,6 +1,7 @@
 #include "Mode.h"
 
 #include <curses.h>
+#include "InputSeq.h"
 #include "Buffer.h"
 #include "Marker.h"
 #include "Global.h"
@@ -11,71 +12,35 @@
 namespace Mode {
     void normal() {
         int key;
-        bool saveSeq = false, quitSeq = false;
-
         while (true) {
             key = getch();
             switch (key) {
                 case 'q':
-                    if (saveSeq) {
-                        saveSeq = false;
-                        break;
-                    }
-                    if (!Buffer::isModified())
-                        return;
-                    if (quitSeq) return;
-                    else quitSeq = true;
-                    break;
+                    if (InputSeq::quit()) return;
+                    else break;
 
                 case 's':
-                    if (quitSeq) {
-                        quitSeq = false;
-                        break;
-                    }
-                    if (saveSeq)
-                        Buffer::save(SaveOption::SAME_FILE);
-                    else saveSeq = true;
-                    break;
-
-                case 'n':
-                    if (saveSeq)
-                        Buffer::save(SaveOption::NEW_FILE);
-                    quitSeq = saveSeq = false;
+                    InputSeq::save();
                     break;
 
                 case KEY_UP: case 'k':
-                    if (saveSeq || quitSeq)
-                        quitSeq = saveSeq = false;
-                    else
-                        Marker::moveUp();
+                    Marker::moveUp();
                     break;
 
                 case KEY_DOWN: case 'j':
-                    if (saveSeq || quitSeq)
-                        quitSeq = saveSeq = false;
-                    else
-                        Marker::moveDown();
+                    Marker::moveDown();
                     break;
 
                 case KEY_LEFT: case 'h':
-                    if (saveSeq || quitSeq)
-                        quitSeq = saveSeq = false;
-                    else
-                        Marker::moveLeft();
+                    Marker::moveLeft();
                     break;
 
                 case KEY_RIGHT: case 'l':
-                    if (saveSeq || quitSeq)
-                        quitSeq = saveSeq = false;
-                    else
-                        Marker::moveRight();
+                    Marker::moveRight();
                     break;
 
                 case '\n': case 'i':
-                    if (saveSeq || quitSeq)
-                        quitSeq = saveSeq = false;
-                    else
-                        Mode::edit();
+                    Mode::edit();
                     break;
             }
         }
