@@ -1,6 +1,8 @@
 #include "Mode.h"
 
 #include <curses.h>
+#include <string>
+#include <cstddef>
 #include "InputSeq.h"
 #include "Buffer.h"
 #include "Marker.h"
@@ -9,10 +11,16 @@
 #include "Base.h"
 #include "Util.h"
 
+using std::to_string;
+
 namespace Mode {
     void normal() {
         int key;
         while (true) {
+            G::setStatusBarText(
+                "Position: " + to_string(Marker::getPos()) +
+                " (0x" + Base::toHex(Marker::getPos()) + ")");
+
             key = getch();
             switch (key) {
                 case 'q':
@@ -47,9 +55,17 @@ namespace Mode {
     }
 
     void edit() {
+        std::size_t mPos = Marker::getPos();
+        G::setStatusBarText(
+            "Editing byte at: " + to_string(mPos) + " (0x" + Base::toHex(mPos) + ")" +
+            " -- Original value = " +
+            to_string(static_cast<unsigned char>(Buffer::at(mPos))) +
+            " (0x" + Base::toHex(Buffer::at(mPos)) + ")"
+        );
+
         Marker::hide();
         int x, y;
-        Table::pos2coords(Marker::getPos(), x, y);
+        Table::pos2coords(mPos, x, y);
         move(y, x);
         curs_set(2);
         bool curLeft = true;
@@ -62,7 +78,7 @@ namespace Mode {
             key = getch();
             switch (key) {
                 case '\n':
-                    Buffer::set(Marker::getPos(), Base::toText(newHexByte));
+                    Buffer::set(mPos, Base::toText(newHexByte));
                 case 'q':
                     Table::resize();
                     curs_set(0);
