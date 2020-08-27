@@ -1,5 +1,4 @@
 #include "Table.h"
-#include "Util.h"
 #include "Base.h"
 #include "Global.h"
 #include "Buffer.h"
@@ -30,13 +29,13 @@ namespace Table {
             printw(Base::toHex(i) + " ");
         }
         attroff(ColorPair::HEADER);
-        newline();
+        addch('\n');
     
         // draw the rest of the lines
         int index = fromPos;
         int numLines = (Buffer::size() - fromPos) / G::cols + 1;
         for (int line = 0; line < numLines && line < G::height-3; line++) {
-            newline();
+            addch('\n');
     
             // left index/offset
             attron(ColorPair::HEADER);

@@ -4,7 +4,6 @@
 #include "Table.h"
 #include "Color.h"
 #include "Base.h"
-#include "Util.h"
 
 #include <curses.h>
 #include <string>

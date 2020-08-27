@@ -1,8 +1,8 @@
 .vscode/
 
 # build related stuff
-build/*
-bin
+build/
+bin/
 
 # other unused stuff
 mod_*

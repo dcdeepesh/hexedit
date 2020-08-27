@@ -1,15 +1,14 @@
 #include "Mode.h"
-
-#include <curses.h>
-#include <string>
-#include <cstddef>
 #include "InputSeq.h"
 #include "Buffer.h"
 #include "Marker.h"
 #include "Global.h"
 #include "Table.h"
 #include "Base.h"
-#include "Util.h"
+
+#include <curses.h>
+#include <string>
+#include <cstddef>
 
 using std::to_string;
 
