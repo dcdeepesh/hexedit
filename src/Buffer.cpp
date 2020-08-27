@@ -51,7 +51,7 @@ namespace Buffer {
     void set(size_t pos, char newByte) {
         if (pos > fileSize)
             throw std::range_error("Buffer::set()");
-        else {
+        else if (buffer[pos] != newByte) {
             buffer[pos] = newByte;
             modified = true;
         }

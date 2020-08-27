@@ -1,7 +1,7 @@
 # Hexedit
 Hexedit is a TUI-based hex editor.
 
-![Hexedit with the binary itself as the file being viewed](https://github.com/dcdeepesh/hexedit/blob/master/Documentation/images/Home.png)
+![Hexedit editing itself](https://github.com/dcdeepesh/hexedit/blob/master/Documentation/images/Home.png)
 
 # Table of Contents
 - [Building Hexedit](#building-hexedit)
@@ -103,7 +103,7 @@ A key pressed in normal mode either starts an input sequence, enters a mode, or 
 **Note:** To enter a mode or start an input sequence, you need to be in the Normal mode, otherwise any further keystrokes are
 considered part of the mode/sequence you are in. When you are in a sequence, pressing a key that is not a part of that sequence, brings the
 editor to Normal mode.
-- **Edit mode** (`i`) - When `i` is pressed in Normal mode, the editor goes into edit mode for the currently highlihted byte.
+- **Edit mode** (`i`) - When `i` is pressed in Normal mode, the editor goes into edit mode for the currently highlighted byte.
 Following are the inputs for edit mode:
   - `Arrow Left`/`Arrow Right` - Move left/right in the current byte (cell).
   - `Enter` - Save changes, if any, and quit edit mode
@@ -145,11 +145,9 @@ Note: This TODO list is in no way exhaustive.
 
 - Command mode
 - Change indicator
-- Make status bar useful
 - Optimize file save process
 
 ## Additional Notes
-- Right now, the status bar is pretty much useless, but it will soon start displaying information
 - In some terminal emulators, the some colors may not be accurate (esp. black; as in the picture at the beginning of this file)
 - If Hexedit is used in a windowed terminal emulator, the effect of resizing the window while Hexedit is running is undefined.
 It is recommended not to resize the window while Hexedit is running.
