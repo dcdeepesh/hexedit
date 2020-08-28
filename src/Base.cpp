@@ -50,7 +50,7 @@ namespace Base {
     }
 
     char toText(char byte) {
-        return (byte > 32) ? byte : '.';
+        return (byte > 32 && byte < 127) ? byte : '.';
     }
 
     char toText(char *hex) {
