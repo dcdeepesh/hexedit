@@ -82,6 +82,15 @@ namespace Buffer {
         modified = false;
     }
 
+    void undo(std::size_t pos) {
+        if (og.find(pos) == og.end())
+            return;
+            
+        buffer[pos] = og.find(pos)->second;
+        og.erase(pos);
+        modified = !og.empty();
+    }
+
     bool isModified() { return modified; }
     int ogVal(size_t pos) { return og[pos]; }
 

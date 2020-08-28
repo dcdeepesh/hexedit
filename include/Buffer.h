@@ -18,6 +18,7 @@ namespace Buffer {
     void set(std::size_t pos, char newByte);
     bool isModified();
     void revert();
+    void undo(std::size_t pos);
     int ogVal(std::size_t pos);
 
     void finish();

@@ -47,4 +47,10 @@ namespace InputSeq {
             Marker::show();
         }
     }
+
+    void undo() {
+        Buffer::undo(Marker::getPos());
+        Table::resize();
+        Marker::show();
+    }
 }

@@ -39,6 +39,10 @@ namespace Mode {
                     if (InputSeq::quit()) return;
                     else break;
 
+                case 'u':
+                    InputSeq::undo();
+                    break;
+
                 case 'r':
                     InputSeq::revert();
                     break;
