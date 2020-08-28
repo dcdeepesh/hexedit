@@ -4,6 +4,7 @@
 namespace InputSeq {
     void save();
     bool quit();
+    void revert();
 }
 
 #endif

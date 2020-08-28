@@ -39,6 +39,10 @@ namespace Mode {
                     if (InputSeq::quit()) return;
                     else break;
 
+                case 'r':
+                    InputSeq::revert();
+                    break;
+                    
                 case 's':
                     InputSeq::save();
                     break;

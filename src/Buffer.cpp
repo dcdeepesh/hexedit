@@ -74,6 +74,14 @@ namespace Buffer {
         modified = !og.empty();
     }
 
+    void revert() {
+        for (auto iter : og)
+            buffer[iter.first] = iter.second;
+
+        og.clear();
+        modified = false;
+    }
+
     bool isModified() { return modified; }
     int ogVal(size_t pos) { return og[pos]; }
 

@@ -1,6 +1,8 @@
 #include "InputSeq.h"
 #include "Buffer.h"
 #include "Global.h"
+#include "Table.h"
+#include "Marker.h"
 
 #include <curses.h>
 
@@ -28,5 +30,21 @@ namespace InputSeq {
 
         int key = getch();
         return key == 'q';
+    }
+
+    void revert() {
+        if (Buffer::isModified())
+            G::setStatusBarText(
+                "-- (r)-Revert sequence -- [r=undo all changes]");
+        else
+            G::setStatusBarText(
+                "-- (r)-Revert sequence -- (No unsaved changes)");
+
+        int key = getch();
+        if (key == 'r' && Buffer::isModified()) {
+            Buffer::revert();
+            Table::resize();
+            Marker::show();
+        }
     }
 }
