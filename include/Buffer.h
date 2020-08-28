@@ -14,8 +14,10 @@ namespace Buffer {
     
     std::size_t size();
     char at(std::size_t pos);
+    char at(std::size_t pos, bool &modified);
     void set(std::size_t pos, char newByte);
     bool isModified();
+    int ogVal(std::size_t pos);
 
     void finish();
 }

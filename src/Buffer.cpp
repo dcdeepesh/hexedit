@@ -2,16 +2,19 @@
 
 #include <fstream>
 #include <string>
+#include <map>
 
 using std::size_t;
 using std::ios;
 using std::string;
+using std::map;
 
 namespace Buffer {
     char *buffer;
     string filePath;
     size_t fileSize;
     bool modified = false;
+    map<int, int> og;
 
     void load(string file) {
         filePath = file;
@@ -48,16 +51,31 @@ namespace Buffer {
             return buffer[pos];
     }
 
+    char at(size_t pos, bool &modified) {
+        modified = og.find(pos) != og.end();
+        return at(pos);
+    }
+
     void set(size_t pos, char newByte) {
         if (pos > fileSize)
             throw std::range_error("Buffer::set()");
-        else if (buffer[pos] != newByte) {
-            buffer[pos] = newByte;
-            modified = true;
-        }
+
+        if (buffer[pos] == newByte)
+            return;
+
+        auto iter = og.find(pos);
+        if (iter == og.end())             // first change
+            og[pos] = buffer[pos];
+        else if (iter->second == newByte) // changing back to og
+            og.erase(pos);
+        else ;                            // changed, but changing more
+
+        buffer[pos] = newByte;
+        modified = !og.empty();
     }
 
     bool isModified() { return modified; }
+    int ogVal(size_t pos) { return og[pos]; }
 
     void finish() {
         delete[] buffer;

@@ -15,10 +15,23 @@ using std::to_string;
 namespace Mode {
     void normal() {
         int key;
+        bool modified;
+        size_t mPos;
+        std::string ogValMsg;
         while (true) {
+            mPos = Marker::getPos();
+            Buffer::at(mPos, modified);
+            ogValMsg = "";
+            if (modified)
+                ogValMsg = "-- (Modified) Original Value: " +
+                to_string(Buffer::ogVal(mPos)) +
+                " (0x" + Base::toHex(Buffer::ogVal(mPos)) + ")";
+
             G::setStatusBarText(
-                "Position: " + to_string(Marker::getPos()) +
-                " (0x" + Base::toHex(Marker::getPos()) + ")");
+                "Position: " + to_string(mPos) +
+                " (0x" + Base::toHex(mPos) + ")" +
+                " " + ogValMsg
+            );
 
             key = getch();
             switch (key) {

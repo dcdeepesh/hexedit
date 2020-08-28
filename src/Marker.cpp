@@ -52,6 +52,9 @@ namespace Marker {
     }
 
     void hide() {
-        displayByte(ColorPair::DEFAULT);
+        bool modified;
+        Buffer::at(pos, modified);
+
+        displayByte(modified ? ColorPair::MODIFIED : ColorPair::DEFAULT);
     }
 }

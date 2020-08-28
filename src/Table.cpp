@@ -48,9 +48,13 @@ namespace Table {
                 if (i % 4 == 0)
                     addch(' ');
     
+                bool modified = false;
                 char byte =
-                    index == -1 ? 0 : Buffer::at(index);
+                    index == -1 ? 0 : Buffer::at(index, modified);
+                
+                if (modified) attron(ColorPair::MODIFIED);
                 printw(Base::toHex(byte) + " ");
+                if (modified) attroff(ColorPair::MODIFIED);
                 ss << Base::toText(byte);
     
                 if (index >= 0)
