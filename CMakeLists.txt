@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 include_directories(include)
+include_directories(lib/include)
 file(GLOB SOURCES src/*.cpp)
 
 add_executable(hexedit ${SOURCES})
