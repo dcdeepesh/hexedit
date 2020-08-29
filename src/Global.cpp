@@ -5,6 +5,7 @@
 
 namespace G {
     int height, width;
+    int cols;
     
     void setStatusBarText(std::string text) {
         // clear the status bar first

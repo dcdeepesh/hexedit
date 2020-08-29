@@ -5,10 +5,10 @@
 #include <string>
 
 namespace G {
-    const int cols = 16;
     const int isz = 8;
 
     extern int height, width;
+    extern int cols;
 
     void setStatusBarText(std::string text);
 }

@@ -58,6 +58,13 @@ int main(int argc, char **argv) {
 
     std::string fileName = operands[0];
     bool stdColors = ap.isSwitchSet("s") || ap.isSwitchSet("std-colors");
+
+    int columns = 16;
+    if (ap.isDataOptSet("c"))
+        columns = std::stoi(ap.getDataForOpt("c"));
+    if (ap.isDataOptSet("columns"))
+        columns = std::stoi(ap.getDataForOpt("columns"));
+    G::cols = columns;
     
     initscr();
     G::height = LINES;
