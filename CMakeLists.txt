@@ -10,7 +10,7 @@ include_directories(include)
 if (WIN32)
     include_directories(lib/include)
 endif()
-file(GLOB SOURCES src/*.cpp)
+file(GLOB SOURCES src/*.cpp src/**/*.cpp)
 
 add_executable(hexedit ${SOURCES})
 target_link_libraries(hexedit curses)
