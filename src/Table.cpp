@@ -7,6 +7,7 @@
 #include <curses.h>
 #include <sstream>
 #include <cstddef>
+#include <cmath>
 
 using std::size_t;
 
@@ -101,7 +102,8 @@ namespace Table {
         int xOffset = scrOffset % G::cols;
         x = G::cols * 3;    // 2 hex digits, one space, each
         x += G::isz + 2;    // left column + 2 spaces
-        x += G::cols / 4;   // extra spaces every 4 bytes
+        x += std::ceil(G::cols / 4.0) - 1;   // extra spaces every 4 bytes
+        x += 1;             // 1 space b/w hex column and data column
         x += xOffset;       // inside the table
     }
 
