@@ -8,7 +8,7 @@ enum ColorPairID {
 };
 
 namespace Colors {
-    void init();
+    void init(bool stdColors);
 }
 
 namespace ColorPair {

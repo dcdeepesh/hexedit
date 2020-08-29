@@ -57,6 +57,7 @@ int main(int argc, char **argv) {
     }
 
     std::string fileName = operands[0];
+    bool stdColors = ap.isSwitchSet("s") || ap.isSwitchSet("std-colors");
     
     initscr();
     G::height = LINES;
@@ -64,7 +65,7 @@ int main(int argc, char **argv) {
     curs_set(0);
     cbreak();
     noecho();
-    Colors::init();
+    Colors::init(stdColors);
     keypad(stdscr, TRUE);
 
     Buffer::load(fileName);
