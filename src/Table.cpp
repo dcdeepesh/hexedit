@@ -75,10 +75,10 @@ namespace Table {
                 addch(c);
         }
     
-        refresh();
+        ::refresh();
     }
 
-    void resize() {
+    void refresh() {
         show(startIndex);
     }
 

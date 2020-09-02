@@ -4,6 +4,9 @@
 build/
 bin/
 
+# vim
+*~
+
 # other unused stuff
 mod_*
 Unused*

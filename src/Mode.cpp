@@ -101,7 +101,7 @@ namespace Mode {
                     Buffer::set(mPos, Base::toText(newHexByte));
                     [[fallthrough]];
                 case 'q':
-                    Table::resize();
+                    Table::refresh();
                     curs_set(0);
                     Marker::show();
                     return;

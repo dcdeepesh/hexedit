@@ -43,14 +43,14 @@ namespace InputSeq {
         int key = getch();
         if (key == 'r' && Buffer::isModified()) {
             Buffer::revert();
-            Table::resize();
+            Table::refresh();
             Marker::show();
         }
     }
 
     void undo() {
         Buffer::undo(Marker::getPos());
-        Table::resize();
+        Table::refresh();
         Marker::show();
     }
 }
