@@ -3,6 +3,7 @@
 #include "Global.h"
 #include "Buffer.h"
 #include "Color.h"
+#include "Warnings.h"
 
 #include <curses.h>
 #include <sstream>
@@ -61,9 +62,11 @@ namespace Table {
                 if (index >= 0)
                     endIndex = index;
 
+                SUPPRESS_WARNING_SIGN_COMPARE()
                 if (index < Buffer::size() - 1 && index >= 0)
                     index++;
                 else index = -1;
+                RESTORE_WARNING_STATE()
             }
     
             // string data (on the right)

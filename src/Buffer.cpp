@@ -68,7 +68,7 @@ namespace Buffer {
             og[pos] = buffer[pos];
         else if (iter->second == newByte) // changing back to og
             og.erase(pos);
-        else ;                            // changed, but changing more
+        else {}                           // changed, but changing more
 
         buffer[pos] = newByte;
         modified = !og.empty();

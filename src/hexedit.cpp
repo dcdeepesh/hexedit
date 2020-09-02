@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
     ArgParser ap(argc, argv, "hs", "c");
     try {
         ap.parse();
-    } catch (ArgParseException e) {
+    } catch (const ArgParseException &e) {
         std::cout << e.what() << std::endl;
         return 2;
     }

@@ -99,6 +99,7 @@ namespace Mode {
             switch (key) {
                 case '\n':
                     Buffer::set(mPos, Base::toText(newHexByte));
+                    [[fallthrough]];
                 case 'q':
                     Table::resize();
                     curs_set(0);
