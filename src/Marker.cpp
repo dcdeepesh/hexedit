@@ -26,11 +26,14 @@ namespace Marker {
 
     size_t getPos() { return pos; }
 
+    void jumpUp()       { setPos(pos - 10 * G::cols); }
+    void jumpDown()     { setPos(pos + 10 * G::cols); }
     void moveUp()       { setPos(pos - G::cols); }
     void moveDown()     { setPos(pos + G::cols); }
     void moveLeft()     { setPos(pos - 1); }
     void moveRight()    { setPos(pos + 1); }
     void moveToOrigin() { setPos(0); }
+    void moveToEnd() { setPos(Buffer::size() - 1); }
 
     void displayByte(int colorPair) {
         int x, y;

@@ -9,6 +9,7 @@ namespace Marker {
     void moveLeft();
     void moveRight();
     void moveToOrigin();
+    void moveToEnd();
 
     void show();
     void hide();

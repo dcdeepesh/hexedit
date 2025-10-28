@@ -12,6 +12,14 @@
 
 using std::to_string;
 
+// These values can be found by (in Vim insert mode) doing Ctrl-V, then
+// pressing the key (e.g. Ctrl-D), putting that in quotations and assigning it
+// to a char. Then you can use your LSP or print to get the value.
+enum special_keys {
+    CONTROL_D = 4,
+    CONTROL_U = 21,
+};
+
 namespace Mode {
     void normal() {
         int key;
@@ -49,6 +57,23 @@ namespace Mode {
                     
                 case 's':
                     InputSeq::save();
+                    break;
+
+                case CONTROL_U:
+                    for (int i = 0; i < 10; i++) {
+                        Marker::moveUp();
+                    }
+                    break;
+                case CONTROL_D:
+                    for (int i = 0; i < 10; i++) {
+                        Marker::moveDown();
+                    }
+                    break;
+                case 'g': // Not really correct, but proper logic for 'gg' is annoying
+                    Marker::moveToOrigin();
+                    break;
+                case 'G':
+                    Marker::moveToEnd();
                     break;
 
                 case KEY_UP: case 'k':
